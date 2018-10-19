@@ -629,6 +629,10 @@ struct GraphFuser {
     }
     // Sort in reverse topological order
     std::sort(result.begin(), result.end(), [&](Value * a, Value * b) {
+      if (a->node() == b->node()) {
+        // doesn't matter which order in this case
+        return true;
+      }
       return a->node()->isAfter(b->node());
     });
     return result;

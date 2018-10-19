@@ -487,7 +487,7 @@ Block::Block(Graph* graph_, Node* node_)
 void Block::reIndexTopology() {
   auto curPos = kLowerBound;
   for (auto node : nodes()) {
-    AT_ASSERT(curPos <= (kLowerBound - kAppendInterval));
+    AT_ASSERT(curPos <= (kUpperBound - kAppendInterval));
     curPos += kAppendInterval;
     node->topo_position_ = curPos;
   }
